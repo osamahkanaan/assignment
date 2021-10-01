@@ -42,7 +42,7 @@ public class BookService {
         return result;
     }
     
-    public Book getMaxId(){
+    public Book getLastBook(){
         return bookRepository.findFirstByOrderByIdDesc();
     }
 }

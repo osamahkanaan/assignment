@@ -1,29 +1,22 @@
 package com.smart.assignment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smart.assignment.controller.BookController;
-import com.smart.assignment.controller.TomcatController;
 import com.smart.assignment.entity.Author;
 import com.smart.assignment.entity.Book;
 import com.smart.assignment.entity.Classification;
 import com.smart.assignment.service.BookService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 @SpringBootTest
@@ -37,14 +30,6 @@ class AssignmentApplicationTests {
     
         @Autowired
         private BookService bookService;
-        
-        @Test
-        void TomcatControllerTest() throws Exception{
-            
-            RequestBuilder request = MockMvcRequestBuilders.get("/hello");
-            MvcResult result = mockMvc.perform(request).andReturn();
-            Assertions.assertEquals(result.getResponse().getStatus(), 200);
-        }
         
         @Test
         void BookControllerListTest() throws Exception{
@@ -88,7 +73,7 @@ class AssignmentApplicationTests {
         @Test
         public void BookControllerUpdateTest() throws Exception 
         {
-            Book b = bookService.getMaxId();
+            Book b = bookService.getLastBook();
             b.setName("Book upate test");
             RequestBuilder request =
                     MockMvcRequestBuilders.put("/books/update/" + b.getId())
@@ -103,7 +88,7 @@ class AssignmentApplicationTests {
         @Test
         public void BookControllerDeleteTest() throws Exception 
         {
-            Book b = bookService.getMaxId();
+            Book b = bookService.getLastBook();
             RequestBuilder request =
                     MockMvcRequestBuilders.delete("/books/delete/" + b.getId());
             mockMvc.perform(request)

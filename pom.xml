@@ -11,7 +11,7 @@
 	<groupId>com.smart</groupId>
 	<artifactId>assignment</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>assignment</name>
 	<description>Assignment for Smart Dubai</description>
 	<properties>
