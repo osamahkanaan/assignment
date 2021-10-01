@@ -21,8 +21,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-//@ExtendWith(SpringExtension.class)
-//@WebMvcTest
 class AssignmentApplicationTests {
     
         @Autowired
